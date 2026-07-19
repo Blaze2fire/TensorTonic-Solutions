@@ -6,11 +6,11 @@ def activate(x, method="relu"):
     """
     x=torch.tensor(x,dtype=torch.float32,requires_grad=True)
     if method=='relu':
-        return torch.where(x>0,x,0)
+        return (torch.where(x>0,x,0)).tolist()
     elif method=='sigmoid':
-        return 1/(1+torch.exp(-x))
+        return (1/(1+torch.exp(-x))).tolist()
     elif method=='tanh':
-        return (torch.exp(x)-torch.exp(-x))/(torch.exp(x)+torch.exp(-x))
+        return torch.tanh(x).tolist()
     elif method=='leaky_relu':
-        return torch.where(x>0,x,0.01*x)
+        return (torch.where(x>0,x,0.01*x)).tolist()
     pass
